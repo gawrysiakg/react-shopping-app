@@ -9,9 +9,20 @@ import { useState } from "react";
 function App() {
   const [productList, setProductList] = useState(products);
   const [productsToDisplay, setProductsToDisplay] = useState(productList);
+  const [cart, setCart] = useState([]);
 
   const handleAddToCart = (item) => {
     console.log(item);
+    setCart((cart) => [...cart, item]);
+  };
+
+  const handleRemoveFromCart = (item) => {
+    const indexToRemove = cart.findIndex((inCart) => inCart === item);
+    if (indexToRemove !== -1) {
+      const updatedCart = [...cart];
+      updatedCart.splice(indexToRemove, 1); // Usuń jedno wystąpienie produktu
+      setCart(updatedCart);
+    }
   };
 
   return (
@@ -20,7 +31,7 @@ function App() {
       <ProductsFilters />
       <div className={styles.columnsWrapper}>
         <ProductsList list={productsToDisplay} addToCart={handleAddToCart} />
-        <ShopingList />
+        <ShopingList cart={cart} removeFromCart={handleRemoveFromCart} />
       </div>
     </div>
   );
