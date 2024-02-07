@@ -1,15 +1,17 @@
 import commonColumnsStyles from "../../../common/styles/Columns.module.scss";
-import list from "../../../common/consts/produkty";
 import React, { useState } from "react";
-function ProductsList() {
-  const [selectedProducts, setSelectedProducts] = useState([]);
 
-  const handleSelectProduct = (item) => {
-    setSelectedProducts((prevSelectedProducts) => [
-      ...prevSelectedProducts,
-      item,
-    ]);
-  };
+const ProductsList = (props) => {
+  const { list, addToCart } = props;
+
+  // const [selectedProducts, setSelectedProducts] = useState([]);
+
+  // const handleSelectProduct = (item) => {
+  //   setSelectedProducts((prevSelectedProducts) => [
+  //     ...prevSelectedProducts,
+  //     item,
+  //   ]);
+  // };
 
   const mappedProductsList = () => {
     let products = list;
@@ -17,7 +19,7 @@ function ProductsList() {
     return (
       <ul>
         {products.map((item) => (
-          <li key={item.nazwa} onClick={() => handleSelectProduct(item)}>
+          <li key={item.nazwa} onClick={() => addToCart(item)}>
             {item.nazwa}
           </li>
         ))}
@@ -30,13 +32,13 @@ function ProductsList() {
       <header className={commonColumnsStyles.AppHeader}>
         <p>Products list</p>
         {mappedProductsList()}
-        <p>
+        {/* <p>
           Selected Products:{" "}
           {selectedProducts.map((product) => product.nazwa).join(", ")}
-        </p>
+        </p> */}
       </header>
     </div>
   );
-}
+};
 
 export default ProductsList;
