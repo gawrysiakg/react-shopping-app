@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../../../common/styles/Headers.module.scss";
 
 const ProductsFilters = (props) => {
-  const { fullList, filteredList } = props;
+  const { fullList, filteredList, showOnlyFood } = props;
   let categoryList = fullList
     .map((list) => list.kategoria)
     .reduce((acc, cat) => {
@@ -11,20 +11,22 @@ const ProductsFilters = (props) => {
       }
       return acc;
     }, []);
-  // const { categories, setCategories } = useState(
-  //   Object.values(fullList.map((list) => list.kategoria))
-  // );
-  const [categories, setCategories] = useState(categoryList);
+
   const [selectedCategory, setSelectedCategory] = useState("All categories");
   const [itemToFind, setItemToFind] = useState("");
+  const [onlyFood, setOnlyFood] = useState(false);
 
   const handleSelectCategory = (event) => {
     setSelectedCategory(event.target.value);
   };
 
   const handleFIlterButtn = () => {
-    console.log(selectedCategory + " : " + itemToFind);
     filteredList(selectedCategory, itemToFind);
+  };
+
+  const handleOnlyFoodFilter = (event) => {
+    setOnlyFood(event.target.checked);
+    showOnlyFood(event.target.checked);
   };
 
   return (
@@ -52,6 +54,14 @@ const ProductsFilters = (props) => {
       <button type="button" onClick={handleFIlterButtn}>
         Find
       </button>
+      Only food products
+      <input
+        checked={onlyFood}
+        type="checkbox"
+        // name={simpleFoodFromList.name}
+        name="Only food products"
+        onChange={(e) => handleOnlyFoodFilter(e)}
+      />
     </div>
   );
 };
