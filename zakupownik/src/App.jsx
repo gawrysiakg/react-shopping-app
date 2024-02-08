@@ -25,8 +25,35 @@ function App() {
     }
   };
 
-  const handleFiltering = () => {
+  const handleFiltering = (selectedCategory, itemToFind) => {
     console.log("filtering...");
+    if (selectedCategory === "All categories") {
+      if (itemToFind === "") {
+        setProductsToDisplay([...productList]);
+      } else {
+        setProductsToDisplay(
+          productList.filter((singleProduct) =>
+            singleProduct.nazwa.includes(itemToFind)
+          )
+        );
+      }
+    } else {
+      if (itemToFind === "") {
+        setProductsToDisplay(
+          productList.filter(
+            (singleProduct) => singleProduct.kategoria === selectedCategory
+          )
+        );
+      } else {
+        let filteredList = [...productList];
+        filteredList = filteredList
+          .filter(
+            (singleProduct) => singleProduct.kategoria === selectedCategory
+          )
+          .filter((singleProduct) => singleProduct.nazwa.includes(itemToFind));
+        setProductsToDisplay(filteredList);
+      }
+    }
   };
 
   return (

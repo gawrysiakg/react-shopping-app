@@ -15,7 +15,7 @@ const ProductsFilters = (props) => {
   //   Object.values(fullList.map((list) => list.kategoria))
   // );
   const [categories, setCategories] = useState(categoryList);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All categories");
   const [itemToFind, setItemToFind] = useState("");
 
   const handleSelectCategory = (event) => {
@@ -24,11 +24,12 @@ const ProductsFilters = (props) => {
 
   const handleFIlterButtn = () => {
     console.log(selectedCategory + " : " + itemToFind);
+    filteredList(selectedCategory, itemToFind);
   };
 
   return (
     <div className={styles.Wrapper}>
-      Products Filters
+      Find product
       <input
         type="text"
         placeholder="Wpisz nazwę produktu"
@@ -39,6 +40,9 @@ const ProductsFilters = (props) => {
         value={selectedCategory}
         onChange={(e) => handleSelectCategory(e)}
       >
+        <option key={"All categories"} value={"All categories"}>
+          {"All categories"}
+        </option>
         {categoryList.map((el) => (
           <option key={el} value={el}>
             {el}
