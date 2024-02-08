@@ -25,10 +25,14 @@ function App() {
     }
   };
 
+  const handleFiltering = () => {
+    console.log("filtering...");
+  };
+
   return (
     <div className={styles.appWrapper}>
       <AddProducts />
-      <ProductsFilters />
+      <ProductsFilters fullList={productList} filteredList={handleFiltering} />
       <div className={styles.columnsWrapper}>
         <ProductsList list={productsToDisplay} addToCart={handleAddToCart} />
         <ShopingList cart={cart} removeFromCart={handleRemoveFromCart} />
