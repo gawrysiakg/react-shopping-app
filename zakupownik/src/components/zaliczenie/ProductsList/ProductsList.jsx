@@ -32,10 +32,6 @@ const ProductsList = (props) => {
       <header className={commonColumnsStyles.AppHeader}>
         <p>Products list</p>
         {mappedProductsList()}
-        {/* <p>
-          Selected Products:{" "}
-          {selectedProducts.map((product) => product.nazwa).join(", ")}
-        </p> */}
       </header>
     </div>
   );
