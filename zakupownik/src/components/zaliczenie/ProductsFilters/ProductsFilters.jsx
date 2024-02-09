@@ -34,7 +34,7 @@ const ProductsFilters = (props) => {
       Find product
       <input
         type="text"
-        placeholder="Wpisz nazwę produktu"
+        placeholder="Enter product name"
         value={itemToFind}
         onChange={(e) => setItemToFind(e.target.value)}
       />

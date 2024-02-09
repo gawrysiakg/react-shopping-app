@@ -12,7 +12,7 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (item) => {
-    setCart((cart) => [...cart, item]);
+    setCart((cart) => [...cart, { ...item, isCrossOut: false }]);
   };
 
   const handleRemoveFromCart = (item) => {
@@ -58,13 +58,29 @@ function App() {
     // oraz chcemy bazować na poprzednim stanie i go zmienić
   };
 
+  const handleToggleCrossOutProduct = (index) => {
+    setCart((prevCart) =>
+      prevCart.map((item, currentIndex) => {
+        if (currentIndex === index) {
+          return { ...item, isCrossOut: !item.isCrossOut };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
   return (
     <div className={styles.appWrapper}>
       <AddProducts addNewProduct={addNewProduct} />
       <ProductsFilters fullList={productList} filteredList={handleFiltering} />
       <div className={styles.columnsWrapper}>
         <ProductsList list={filteredProducts} addToCart={handleAddToCart} />
-        <ShopingList cart={cart} removeFromCart={handleRemoveFromCart} />
+        <ShopingList
+          cart={cart}
+          removeFromCart={handleRemoveFromCart}
+          toggleCrossOut={handleToggleCrossOutProduct}
+        />
       </div>
     </div>
   );

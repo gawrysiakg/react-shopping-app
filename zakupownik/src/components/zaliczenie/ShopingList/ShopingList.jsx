@@ -1,32 +1,35 @@
+import { useState } from "react";
 import commonColumnsStyles from "../../../common/styles/Columns.module.scss";
 
 const ShopingList = (props) => {
-  const { cart, removeFromCart } = props;
-
-  // const displayProductsInCart = () => {
-  //   let products = cart.map((item) => {
-  //     <li key={item.nazwa}>{item.nazwa}</li>;
-  //   });
-
-  //   return <ul>{products}</ul>;
-  // };
+  const { cart, removeFromCart, toggleCrossOut } = props;
 
   const handleRemoveFromCart = (event, item) => {
     event.preventDefault();
     removeFromCart(item);
   };
 
+  const handleCrossOut = (event, index) => {
+    event.preventDefault();
+    toggleCrossOut(index);
+  };
+
   return (
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeader}>
         <p>Shoping List</p>
-        {/* {displayProductsInCart()} */}
-        {cart.map((item, index) => (
+        {cart.map((produkt, index) => (
           <li
             key={index}
-            onContextMenu={(event) => handleRemoveFromCart(event, item)}
+            onClick={(event) => handleRemoveFromCart(event, produkt)}
+            onContextMenu={(event) => handleCrossOut(event, index)}
+            style={{
+              "text-decoration": `${
+                produkt.isCrossOut ? "line-through" : "auto"
+              }`,
+            }}
           >
-            {item.nazwa}
+            {produkt.nazwa}
           </li>
         ))}
       </header>

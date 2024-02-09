@@ -23,13 +23,13 @@ const AddProducts = (props) => {
       Add products
       <input
         type="text"
-        placeholder="Nazwa produktu"
+        placeholder="Product name"
         value={productName}
         onChange={(e) => setProductName(e.target.value.trim())}
       />
       <input
         type="text"
-        placeholder="Kategoria"
+        placeholder="Category"
         value={productCategory}
         onChange={(e) => setProductCategory(e.target.value.trim())}
       />
