@@ -10,14 +10,6 @@ function App() {
   const [productList, setProductList] = useState(products);
   const [filteredProducts, setFilteredProducts] = useState(productList);
   const [cart, setCart] = useState([]);
-  const [isOnlyFoodChecked, setIsOnlyFoodChecked] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All categories");
-  const [itemToFind, setItemToFind] = useState("");
-
-  useEffect(() => {
-    filterProductsList();
-  }, [isOnlyFoodChecked, selectedCategory, itemToFind]);
-  // useEffect jest więc używany, aby kontrolować moment, w którym ma zostać wykonany kod zależny od zmiany stanu
 
   const handleAddToCart = (item) => {
     setCart((cart) => [...cart, item]);
@@ -32,7 +24,7 @@ function App() {
     }
   };
 
-  const filterProductsList = () => {
+  const handleFiltering = (selectedCategory, itemToFind, isOnlyFoodChecked) => {
     let filteredList;
     let filteredProducts = [];
 
@@ -59,25 +51,10 @@ function App() {
     setFilteredProducts(filteredList);
   };
 
-  const handleFiltering = (selectedCategory, itemToFind) => {
-    setSelectedCategory(selectedCategory);
-    setItemToFind(itemToFind);
-    // filterProductsList();
-  };
-
-  const handleShowOnlyFood = (onlyFood) => {
-    setIsOnlyFoodChecked(onlyFood);
-    //  filterProductsList();
-  };
-
   return (
     <div className={styles.appWrapper}>
       <AddProducts />
-      <ProductsFilters
-        fullList={productList}
-        filteredList={handleFiltering}
-        showOnlyFood={handleShowOnlyFood}
-      />
+      <ProductsFilters fullList={productList} filteredList={handleFiltering} />
       <div className={styles.columnsWrapper}>
         <ProductsList list={filteredProducts} addToCart={handleAddToCart} />
         <ShopingList cart={cart} removeFromCart={handleRemoveFromCart} />

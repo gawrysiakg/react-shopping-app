@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../../common/styles/Headers.module.scss";
 
 const ProductsFilters = (props) => {
-  const { fullList, filteredList, showOnlyFood } = props;
+  const { fullList, filteredList } = props;
+  const [selectedCategory, setSelectedCategory] = useState("All categories");
+  const [itemToFind, setItemToFind] = useState("");
+  const [onlyFood, setOnlyFood] = useState(false);
+
   let categoryList = fullList
     .map((list) => list.kategoria)
     .reduce((acc, cat) => {
@@ -12,16 +16,12 @@ const ProductsFilters = (props) => {
       return acc;
     }, []);
 
-  const [selectedCategory, setSelectedCategory] = useState("All categories");
-  const [itemToFind, setItemToFind] = useState("");
-  const [onlyFood, setOnlyFood] = useState(false);
+  useEffect(() => {
+    filteredList(selectedCategory, itemToFind, onlyFood);
+  }, [selectedCategory, itemToFind, onlyFood]);
 
   const handleSelectCategory = (event) => {
     setSelectedCategory(event.target.value);
-  };
-
-  const handleFIlterButtn = () => {
-    filteredList(selectedCategory, itemToFind);
   };
 
   const handleOnlyFoodFilter = (event) => {
@@ -51,14 +51,10 @@ const ProductsFilters = (props) => {
           </option>
         ))}
       </select>
-      <button type="button" onClick={handleFIlterButtn}>
-        Find
-      </button>
       Only food products
       <input
         checked={onlyFood}
         type="checkbox"
-        // name={simpleFoodFromList.name}
         name="Only food products"
         onChange={(e) => handleOnlyFoodFilter(e)}
       />
