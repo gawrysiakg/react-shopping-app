@@ -51,7 +51,7 @@ const ProductsFilters = (props) => {
           </option>
         ))}
       </select>
-      Only food products
+      <label>Only food products</label>
       <input
         checked={onlyFood}
         type="checkbox"

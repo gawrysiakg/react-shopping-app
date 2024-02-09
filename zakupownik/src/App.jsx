@@ -4,7 +4,7 @@ import AddProducts from "./components/zaliczenie/AddProducts/AddProducts";
 import ProductsFilters from "./components/zaliczenie/ProductsFilters/ProductsFilters";
 import ProductsList from "./components/zaliczenie/ProductsList/ProductsList";
 import ShopingList from "./components/zaliczenie/ShopingList/ShopingList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [productList, setProductList] = useState(products);
@@ -51,9 +51,16 @@ function App() {
     setFilteredProducts(filteredList);
   };
 
+  const addNewProduct = (product) => {
+    setProductList((prevProductList) => [...prevProductList, product]);
+    setFilteredProducts((prevProductList) => [...prevProductList, product]);
+    //  bo useState nie gwarantuje natychmiastowego zaktualizowania stanu
+    // oraz chcemy bazować na poprzednim stanie i go zmienić
+  };
+
   return (
     <div className={styles.appWrapper}>
-      <AddProducts />
+      <AddProducts addNewProduct={addNewProduct} />
       <ProductsFilters fullList={productList} filteredList={handleFiltering} />
       <div className={styles.columnsWrapper}>
         <ProductsList list={filteredProducts} addToCart={handleAddToCart} />
