@@ -25,7 +25,6 @@ function App() {
   };
 
   const handleFiltering = (selectedCategory, itemToFind, isOnlyFoodChecked) => {
-    let filteredList;
     let filteredProducts = [];
 
     if (isOnlyFoodChecked) {
@@ -36,19 +35,14 @@ function App() {
       filteredProducts = [...productList];
     }
 
-    if (selectedCategory === "All categories") {
-      filteredList = filteredProducts.filter((singleProduct) =>
+    filteredProducts = filteredProducts.filter(
+      (singleProduct) =>
+        (selectedCategory === "All categories" ||
+          singleProduct.kategoria === selectedCategory) &&
         singleProduct.nazwa.toLowerCase().includes(itemToFind.toLowerCase())
-      );
-    } else {
-      filteredList = filteredProducts
-        .filter((singleProduct) => singleProduct.kategoria === selectedCategory)
-        .filter((singleProduct) =>
-          singleProduct.nazwa.toLowerCase().includes(itemToFind.toLowerCase())
-        );
-    }
+    );
 
-    setFilteredProducts(filteredList);
+    setFilteredProducts(filteredProducts);
   };
 
   const addNewProduct = (product) => {

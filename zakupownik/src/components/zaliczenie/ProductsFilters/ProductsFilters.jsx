@@ -26,7 +26,7 @@ const ProductsFilters = (props) => {
 
   const handleOnlyFoodFilter = (event) => {
     setOnlyFood(event.target.checked);
-    showOnlyFood(event.target.checked);
+    // showOnlyFood(event.target.checked);
   };
 
   return (
