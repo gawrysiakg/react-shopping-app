@@ -10,7 +10,7 @@ const ProductsList = (props) => {
     return (
       <ul>
         {products.map((item) => (
-          <li key={item.nazwa} onClick={() => addToCart(item)}>
+          <li key={item.id} onClick={() => addToCart(item)}>
             {item.nazwa}
           </li>
         ))}

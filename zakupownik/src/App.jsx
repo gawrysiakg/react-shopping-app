@@ -7,14 +7,16 @@ import ShopingList from "./components/zaliczenie/ShopingList/ShopingList";
 import { useState } from "react";
 
 function App() {
-  const [productList, setProductList] = useState(products);
+  const [productList, setProductList] = useState(
+    products.map((p) => ({ ...p, id: Math.random() }))
+  );
   const [filteredProducts, setFilteredProducts] = useState(productList);
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (item) => {
     setCart((cart) => [...cart, { ...item, isCrossOut: false }]);
   };
-
+  console.log(productList);
   const handleRemoveFromCart = (item) => {
     const indexToRemove = cart.findIndex((inCart) => inCart === item);
     if (indexToRemove !== -1) {
