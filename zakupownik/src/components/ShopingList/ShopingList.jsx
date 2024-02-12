@@ -1,5 +1,5 @@
 import { useState } from "react";
-import commonColumnsStyles from "../../../common/styles/Columns.module.scss";
+import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 
 const ShopingList = (props) => {
   const { cart, removeFromCart, toggleCrossOut } = props;

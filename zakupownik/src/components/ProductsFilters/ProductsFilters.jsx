@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../../../common/styles/Headers.module.scss";
+import styles from "../../common/styles/Headers.module.scss";
 
 const ProductsFilters = (props) => {
   const { fullList, filteredList } = props;

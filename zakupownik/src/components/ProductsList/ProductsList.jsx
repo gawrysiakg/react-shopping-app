@@ -1,4 +1,4 @@
-import commonColumnsStyles from "../../../common/styles/Columns.module.scss";
+import commonColumnsStyles from "../../common/styles/Columns.module.scss";
 import React from "react";
 
 const ProductsList = (props) => {
