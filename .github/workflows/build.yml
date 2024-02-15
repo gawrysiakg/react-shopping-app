@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2 # Użyj najnowszej wersji bez konkretnej wersji
         with:
-          node-version: "16" # Zostaw aktualną wersję Node.js, którą używasz
+          node-version: "20" # Zostaw aktualną wersję Node.js, którą używasz
 
       - name: Install dependencies
         run: npm install
