@@ -1,6 +1,6 @@
 # Zakupownik - Aplikacja do Planowania Zakupów
 
-## ![Build Status](https://github.com/react-shopping-app/actions/workflows/build.yml/badge.svg)
+## ![Build Status](https://github.com/gawrysiakg/react-shopping-app/actions/workflows/build.yml/badge.svg)
 
 Aplikacja "Zakupownik" to prosty pomocnik w organizacji i realizacji zakupów. Pozwala na dodawanie produktów do listy zakupów, filtrowanie dostępnych produktów oraz śledzenie zakupów. Aplikacja została zbudowana przy użyciu React.
 
