@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.5.4 # Zaktualizowano do najnowszej wersji
+        uses: actions/checkout@v2 # Użyj najnowszej wersji bez konkretnej wersji
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.5.0 # Zaktualizowano do najnowszej wersji
+        uses: actions/setup-node@v2 # Użyj najnowszej wersji bez konkretnej wersji
         with:
           node-version: "16" # Zostaw aktualną wersję Node.js, którą używasz
 
